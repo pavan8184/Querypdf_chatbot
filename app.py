@@ -7,12 +7,12 @@ app = Flask(__name__)
  
 # Load OpenAI API Key from environment variable
 openai_api_key = os.getenv('OPENAI_API_KEY')
-
+ 
 # Path to the PDF file relative to the application directory
 pdf_path = os.path.join(os.path.dirname(__file__), 'path_to_your_pdf.pdf')
  
 # Load and extract text from your PDF
-pdf_text = extract_text_from_pdf('path_to_your_pdf.pdf')
+pdf_text = extract_text_from_pdf(pdf_path)
 pdf_query = PDFQuery(pdf_text, openai_api_key)
  
 @app.route('/')
