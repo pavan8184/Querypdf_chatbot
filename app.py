@@ -1,16 +1,16 @@
+import os
 from flask import Flask, render_template, request, jsonify
-import openai
 from extract_text import extract_text_from_pdf
 from query_pdf import PDFQuery
  
 app = Flask(__name__)
  
-# Configure your OpenAI API key
-openai.api_key = 'your_openai_api_key'
+# Load OpenAI API Key from environment variable
+openai_api_key = os.getenv('OPENAI_API_KEY')
  
 # Load and extract text from your PDF
 pdf_text = extract_text_from_pdf('path_to_your_pdf.pdf')
-pdf_query = PDFQuery(pdf_text)
+pdf_query = PDFQuery(pdf_text, openai_api_key)
  
 @app.route('/')
 def home():
