@@ -1,6 +1,6 @@
 import os
 from flask import Flask, render_template, request, jsonify
-from extract_text import extract_text_from_pdf
+from extract_text_from_pdf import extract_text_from_pdf
 from query_pdf import PDFQuery
  
 app = Flask(__name__)
