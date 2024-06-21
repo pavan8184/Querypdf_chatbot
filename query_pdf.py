@@ -1,15 +1,13 @@
 import openai
-from langchain import LangChain
- 
-# Configure your OpenAI API key
-openai.api_key = 'your_openai_api_key'
+from extract_text import extract_text_from_pdf
  
 class PDFQuery:
-    def __init__(self, text):
+    def __init__(self, text, api_key):
         self.text = text
-        self.chain = LangChain()
+        self.api_key = api_key
  
     def query(self, question):
+        openai.api_key = self.api_key
         response = openai.Completion.create(
             engine="text-davinci-003",
             prompt=f"Here is the PDF content:\n\n{self.text}\n\nQuestion: {question}\n\nAnswer:",
@@ -20,8 +18,9 @@ class PDFQuery:
         )
         return response.choices[0].text.strip()
  
-# Example usage
-pdf_text = extract_text_from_pdf('path_to_your_pdf.pdf')
-pdf_query = PDFQuery(pdf_text)
-answer = pdf_query.query("What is the main topic of this document?")
-print(answer)
+# Example usage (not needed when integrated with Flask)
+if __name__ == '__main__':
+    pdf_text = extract_text_from_pdf('path_to_your_pdf.pdf')
+    pdf_query = PDFQuery(pdf_text, 'your_openai_api_key')
+    answer = pdf_query.query("What is the main topic of this document?")
+    print(answer)
