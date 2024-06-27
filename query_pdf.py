@@ -1,17 +1,18 @@
 import openai
  
 class PDFQuery:
-    def __init__(self, pdf_text, api_key):
+    def __init__(self, pdf_text, openai_api_key):
         self.pdf_text = pdf_text
-        self.api_key = api_key
-        openai.api_key = api_key
+        self.openai_api_key = openai_api_key
+        openai.api_key = openai_api_key
  
-    def query(self, user_query):
-        # Implement logic to query OpenAI based on user input
-        # Example:
-        response = openai.Completion.create(
-            engine="davinci",
-            prompt=self.pdf_text + "\nQuestion: " + user_query + "\nAnswer:",
-            max_tokens=150
+    def query(self, user_message):
+        response = openai.ChatCompletion.create(
+            model="gpt-3.5-turbo",
+            messages=[
+                {"role": "system", "content": "You are a helpful assistant."},
+                {"role": "user", "content": user_message},
+                {"role": "assistant", "content": self.pdf_text}
+            ]
         )
-        return response.choices[0].text.strip()
+        return response['choices'][0]['message']['content']
