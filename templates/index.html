@@ -4,69 +4,71 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>c4c Q&A Chatbot</title>
-<link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
+<link href="
+https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css"
+rel="stylesheet">
 <style>
-    body {
-        background: url("/static/background.jpg") no-repeat center center fixed;
-        background-size: cover;
-        font-family: Arial, sans-serif;
-    }
-    #chat-container {
-        max-width: 800px;
-        margin: 50px auto;
-        padding: 20px;
-        background: rgba(255, 255, 255, 0.9);
-        border-radius: 10px;
-        box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
-    }
-    #chat-log {
-        max-height: 400px;
-        overflow-y: auto;
-        margin-bottom: 20px;
-    }
-    .message {
-        margin: 10px 0;
-        padding: 10px;
-        border-radius: 10px;
-    }
-    .bot-message {
-        text-align: left;
-        background-color: #d4edda;
-        color: #155724;
-    }
-    #chat-form {
-        display: flex;
-    }
-    #user-input {
-        flex: 1;
-        padding: 10px;
-        border-radius: 5px;
-        border: 1px solid #ccc;
-    }
-    #send-btn {
-        margin-left: 10px;
-        padding: 10px 20px;
-        border-radius: 5px;
-        background-color: #007bff;
-        color: #fff;
-        border: none;
-        cursor: pointer;
-    }
-    #send-btn:hover {
-        background-color: #0056b3;
-    }
-    h2 {
-        color: #007bff;
-        margin-bottom: 20px;
-    }
-    p {
-        color: #6c757d;
-    }
-    .robot-image {
-        max-width: 100%;
-        height: auto;
-        margin-top: 20px;
-    }
+        body {
+            background: url("/static/background.jpg") no-repeat center center fixed;
+            background-size: cover;
+            font-family: Arial, sans-serif;
+        }
+        #chat-container {
+            max-width: 800px;
+            margin: 50px auto;
+            padding: 20px;
+            background: rgba(255, 255, 255, 0.9);
+            border-radius: 10px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        }
+        #chat-log {
+            max-height: 400px;
+            overflow-y: auto;
+            margin-bottom: 20px;
+        }
+        .message {
+            margin: 10px 0;
+            padding: 10px;
+            border-radius: 10px;
+        }
+        .bot-message {
+            text-align: left;
+            background-color: #d4edda;
+            color: #155724;
+        }
+        #chat-form {
+            display: flex;
+        }
+        #user-input {
+            flex: 1;
+            padding: 10px;
+            border-radius: 5px;
+            border: 1px solid #ccc;
+        }
+        #send-btn {
+            margin-left: 10px;
+            padding: 10px 20px;
+            border-radius: 5px;
+            background-color: #007bff;
+            color: #fff;
+            border: none;
+            cursor: pointer;
+        }
+        #send-btn:hover {
+            background-color: #0056b3;
+        }
+        h2 {
+            color: #007bff;
+            margin-bottom: 20px;
+        }
+        p {
+            color: #6c757d;
+        }
+        .robot-image {
+            max-width: 100%;
+            height: auto;
+            margin-top: 20px;
+        }
 </style>
 </head>
 <body>
@@ -88,45 +90,42 @@
 </div>
 </div>
 </div>
- 
-<script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
-<script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.3/dist/umd/popper.min.js"></script>
-<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
- 
+<script src="
+https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+<script src="
+https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.3/dist/umd/popper.min.js"></script>
+<script src="
+https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
 <script>
-    document.addEventListener('DOMContentLoaded', async function() {
-        const chatLog = document.getElementById('chat-log');
-        const botMessageDiv = document.createElement('div');
-        botMessageDiv.classList.add('message', 'bot-message');
-        botMessageDiv.textContent = "Welcome! How can I assist you today?";
-        chatLog.appendChild(botMessageDiv);
-        chatLog.scrollTop = chatLog.scrollHeight;
-    });
- 
-    document.getElementById('chat-form').addEventListener('submit', async function(event) {
-        event.preventDefault();
-        const userInput = document.getElementById('user-input').value;
-        if (userInput.trim() === '') return;
- 
-        const response = await fetch('/chatbot', {
-            method: 'POST',
-            headers: {
-                'Content-Type': 'application/json'
-            },
-            body: JSON.stringify({ message: userInput })
+        document.addEventListener('DOMContentLoaded', async function() {
+            const chatLog = document.getElementById('chat-log');
+            const botMessageDiv = document.createElement('div');
+            botMessageDiv.classList.add('message', 'bot-message');
+            botMessageDiv.textContent = "Welcome! How can I assist you today?";
+            chatLog.appendChild(botMessageDiv);
+            chatLog.scrollTop = chatLog.scrollHeight;
         });
-        const result = await response.json();
-        const botResponse = result.response;
- 
-        const chatLog = document.getElementById('chat-log');
-        const botMessageDiv = document.createElement('div');
-        botMessageDiv.classList.add('message', 'bot-message');
-        botMessageDiv.textContent = botResponse;
-        chatLog.appendChild(botMessageDiv);
- 
-        chatLog.scrollTop = chatLog.scrollHeight;
-        document.getElementById('user-input').value = '';
-    });
+        document.getElementById('chat-form').addEventListener('submit', async function(event) {
+            event.preventDefault();
+            const userInput = document.getElementById('user-input').value;
+            if (userInput.trim() === '') return;
+            const response = await fetch('/chatbot', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json'
+                },
+                body: JSON.stringify({ message: userInput })
+            });
+            const result = await response.json();
+            const botResponse = result.response;
+            const chatLog = document.getElementById('chat-log');
+            const botMessageDiv = document.createElement('div');
+            botMessageDiv.classList.add('message', 'bot-message');
+            botMessageDiv.textContent = botResponse;
+            chatLog.appendChild(botMessageDiv);
+            chatLog.scrollTop = chatLog.scrollHeight;
+            document.getElementById('user-input').value = '';
+        });
 </script>
 </body>
 </html>
